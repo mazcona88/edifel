@@ -7,15 +7,11 @@
    <title>Impresión de Remito</title>
 
    <style>
-        body {
-            font-family: Arial, sans-serif !important;
-            font-size: 14pt !important;
-        }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 250px;
+            margin-top: 550px;
         }
 
         th {
@@ -27,20 +23,12 @@
             padding: 5px;
             text-align: center;    
         }
-
-        .Domicilio,
-        .Domicilio2,
-        .Camposvarios,
-        .Facatc,
-        .Ultreglon,
-        .Totalin {
-        }
         
         .Domicilio {
             background: red;
             position: absolute;
             justify-content: space-between;
-            width: 1900px;
+            width: 3500px;
         }
         
         .Domicilio2 {
@@ -52,7 +40,7 @@
             background: green;
             display: flex;
             justify-content: space-between;
-            width: 1900px;
+            width: 3500px;
         }
 
         .campo-left,
@@ -65,29 +53,61 @@
             background: yellow;
             position: absolute;
             justify-content: space-between;
-            width: 1900px;
+            width: 3500px;
         }
         
         .Ultreglon {
             background: grey;
             position: absolute;
             justify-content: space-between;
-            width: 1900px;
+            width: 3500px;
         }
 
         .Totalin {
             background: brown;
             position: absolute;
             justify-content: space-between;
-            width: 1900px;
-            margin-top: 270px;
+            width: 3500px;
+            top: 1170px;
             float: right;
             text-align: right;
         }
-
-  		span#fecha {
-
-}
+		
+		.Num_Remito {
+			position: relative;
+			top: 100px;
+		}
+		.Fecha_Venta {
+			position: relative;
+			top: 180px;
+		}
+		.Cliente {
+			position: relative;
+			top: 305px;
+		}
+		.Domicilio {
+			position: relative;
+			top: 352px;
+		}
+		.Camposvarios {
+			position: relative;
+			top: 395px;
+		}
+		.Facatc {
+			position: relative;
+			top: 430px;
+		}
+		.Obse {
+			position: relative;
+			top: 1250px;
+		}
+		.Ultreglon {
+			position: relative;
+			top: 1350px;
+		}
+		
+		
+		
 
    </style>
       <link rel="stylesheet" href="css/editel.css"> <!-- Asegúrate de enlazar correctamente el CSS -->
@@ -126,7 +146,7 @@
                <div class="Totalin t m0 x12 hd ff2 fsa fc0 sc0 ls0 ws0">TOTAL: <span id="total"></span></div>
 
                <!-- Observaciones -->
-               <div class="t m0 x12 hf y1e ff2 fsb fc0 sc0 ls0 ws0">Observaciones: <span id="observaciones"></span></div>
+               <div class="Obse t m0 x12 hf y1e ff2 fsb fc0 sc0 ls0 ws0">Observaciones: <span id="observaciones"></span></div>
 
                <!-- Recibi Conforme y Aclaracion -->
                <div class="Ultreglon t m0 x17 hd y20 ff2 fsa fc0 sc0 ls0 ws0">Recibi Conforme: <span id="recibiConforme"></span> Aclaracion: <span id="aclaracion" class="Domicilio2"></span></div>
