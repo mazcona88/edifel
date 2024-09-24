@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Remito</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 8px;
+            vertical-align: top;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px; /* Ajusta el ancho para que coincida con la alineación del original */
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%; /* Define un ancho que se ajuste al contenedor */
+            padding: 4px;
+            margin: 4px 0;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .item-row input {
+            width: 100%;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form action="impresion.html" method="GET">
+            <table>
+                <!-- Campos Generales -->
+                <tr>
+					<td><label for="fecha">Fecha:</label></td>
+					<td>
+						<input type="text" id="dia" name="dia" placeholder="Dia" maxlength="2" style="width: 30px;">
+						<span></span>
+						<input type="text" id="mes" name="mes" placeholder="Mes maxlength="2" style="width: 30px;">
+						<span></span>
+						<input type="text" id="anio" name="anio" placeholder="Año" maxlength="4" style="width: 50px;">
+					</td>
+				</tr>
+                <tr>
+                    <td><label for="senores">Señores:</label></td>
+                    <td><input type="text" id="senores" name="senores" placeholder="Nombre del cliente"></td>
+                </tr>
+                <tr>
+                    <td><label for="domicilio">Domicilio:</label></td>
+                    <td><input type="text" id="domicilio" name="domicilio" placeholder="Dirección"></td>
+                </tr>
+                <tr>
+                    <td><label for="localidad">Localidad:</label></td>
+                    <td><input type="text" id="localidad" name="localidad" placeholder="Ciudad"></td>
+                </tr>
+                <tr>
+                    <td><label for="tel">Teléfono:</label></td>
+                    <td><input type="text" id="tel" name="tel" placeholder="Número de teléfono"></td>
+                </tr>
+                <tr>
+                    <td><label for="iva">IVA:</label></td>
+                    <td><input type="text" id="iva" name="iva" placeholder="Condición IVA"></td>
+                </tr>
+                <tr>
+                    <td><label for="cuit">CUIT:</label></td>
+                    <td><input type="text" id="cuit" name="cuit" placeholder="CUIT"></td>
+                </tr>
+                <tr>
+                    <td><label for="atencionSenor">Atención Señor/a:</label></td>
+                    <td><input type="text" id="atencionSenor" name="atencionSenor" placeholder="Nombre"></td>
+                </tr>
+                <tr>
+                    <td><label for="facturaN">Factura N°:</label></td>
+                    <td><input type="text" id="facturaN" name="facturaN" placeholder="Número de Factura"></td>
+                </tr>
+                
+                <!-- Tabla para ítems -->
+                <tr>
+                    <td colspan="2"><strong>Ítems</strong></td>
+                </tr>
+                <tr>
+                    <td><label for="cantidad">Cantidad:</label></td>
+                    <td><label for="detalle">Detalle:</label></td>
+                    <td><label for="precioUnit">Precio Unit.:</label></td>
+                </tr>
+                <tbody id="items">
+					<tr class="item-row">
+						<td><input type="text" name="cantidad[]"></td>
+						<td class="DetalleVenta"><input type="text" name="detalle[]"></td>
+						<td><input type="text" name="precio[]"></td>
+					</tr>
+				</tbody>
+
+                <tr>
+                    <td colspan="3">
+                        <button type="button" onclick="agregarItem()">Añadir Ítem</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="observaciones">Observaciones:</label></td>
+                    <td><input type="text" id="observaciones" name="observaciones" placeholder="Observaciones"></td>
+                </tr>
+                <tr>
+                    <td><label for="recibiConforme">Recibí Conforme:</label></td>
+                    <td><input type="text" id="recibiConforme" name="recibiConforme" placeholder="Nombre y firma"></td>
+                </tr>
+                <tr>
+                    <td><label for="aclaracion">Aclaración:</label></td>
+                    <td><input type="text" id="aclaracion" name="aclaracion" placeholder="Aclaración"></td>
+                </tr>
+            </table>
+
+            <div class="button-container">
+                <button type="submit" onclick="guardarDatos()">Enviar</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+    function agregarItem() {
+        const items = document.getElementById('items');
+        const newItem = document.createElement('tr');
+        newItem.classList.add('item-row');
+        newItem.innerHTML = `
+            <td><input type="text" name="cantidad[]"></td>
+            <td class="DetalleVenta"><input type="text" name="detalle[]"></td>
+            <td><input type="text" name="precio[]"></td>
+        `;
+        items.appendChild(newItem);
+    }
+
+    function guardarDatos() {
+        const dia = document.getElementById('dia').value;
+        const mes = document.getElementById('mes').value;
+        const anio = document.getElementById('anio').value;
+        const fechaCompleta = `                   Fecha:  ${dia}  -  ${mes}  -  ${anio}                                         `;
+        
+        const senores = `      Señores:  ${document.getElementById('senores').value}`;
+        const domicilio = `      Domicilio:  ${document.getElementById('domicilio').value}`;
+        const localidad = ` Localidad:  ${document.getElementById('localidad').value}`;
+        const tel = `      Tel.:  ${document.getElementById('tel').value}`;
+        const iva = ` I.V.A.:  ${document.getElementById('iva').value}`;
+        const cuit = ` C.U.I.T.:  ${document.getElementById('cuit').value}`;
+        const atencionSenor = `      Atención Señor/a:  ${document.getElementById('atencionSenor').value}`;
+        const facturaN = ` Factura N°:  ${document.getElementById('facturaN').value}`;
+        const observaciones = `    ${document.getElementById('observaciones').value}`;
+        const recibiConforme = `     ${document.getElementById('recibiConforme').value}`;
+        const aclaracion = `    ${document.getElementById('aclaracion').value}`;
+        
+        localStorage.setItem('fecha', fechaCompleta);
+        localStorage.setItem('senores', senores);
+        localStorage.setItem('domicilio', domicilio);
+        localStorage.setItem('localidad', localidad);
+        localStorage.setItem('tel', tel);
+        localStorage.setItem('iva', iva);
+        localStorage.setItem('cuit', cuit);
+        localStorage.setItem('atencionSenor', atencionSenor);
+        localStorage.setItem('facturaN', facturaN);
+
+        // Guardar los ítems en localStorage
+        const cantidadInputs = document.querySelectorAll('input[name="cantidad[]"]');
+        const detalleInputs = document.querySelectorAll('input[name="detalle[]"]');
+        const precioInputs = document.querySelectorAll('input[name="precio[]"]');
+        
+        const items = Array.from(cantidadInputs).map((input, index) => ({
+            cantidad: `           ${input.value}`,
+            detalle: `           ${detalleInputs[index].value}`,
+            precio: `           ${precioInputs[index].value}`
+        }));
+        localStorage.setItem('items', JSON.stringify(items));
+
+        localStorage.setItem('observaciones', observaciones);
+        localStorage.setItem('recibiConforme', recibiConforme);
+        localStorage.setItem('aclaracion', aclaracion);
+    }
+    </script>
+
+
+</body>
+</html>

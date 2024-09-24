@@ -7,11 +7,29 @@
    <title>Impresión de Remito</title>
 
    <style>
+		
+		.Fecha_Venta {
+            margin-top: 125px;
+			text-align:right;
+        }
+		
+		table {
+		border-collapse: collapse;
+		margin: 0 auto; /* Asegura que la tabla esté centrada dentro del contenedor */
+		}
 
-        table {
-            width: 100%;
+		.Contenido{
+			margin-top: 135px;
+			width: 950px;
             border-collapse: collapse;
-            margin-top: 550px;
+			/*border: 1px solid black;*/
+		}
+		
+        .Productos {
+			justify-content: center;
+			width: 800px;
+            margin-top: 85px;
+			/*border: 1px solid black;*/
         }
 
         th {
@@ -23,94 +41,74 @@
             padding: 5px;
             text-align: center;    
         }
-        
-        .Domicilio {
-            /*background: red;*/
-            position: absolute;
-            justify-content: space-between;
-            width: 3500px;
-        }
-        
-        .Domicilio2 {
-            float: right;
-            text-align: right;
-        }
-        
-        .Camposvarios {
-            /*background: green;*/
-            display: flex;
-            justify-content: space-between;
-            width: 3500px;
-        }
-
-        .campo-left,
-        .campo-center,
-        .campo-right {
-            flex: 1;
-        }
-
-        .Facatc {
-            /*background: yellow;*/
-            position: absolute;
-            justify-content: space-between;
-            width: 3500px;
-        }
-        
-        .Ultreglon {
-            /*background: grey;*/
-            position: absolute;
-            justify-content: space-between;
-            width: 3500px;
-        }
-
-        .Totalin {
-            /*background: brown;*/
-            position: absolute;
-            justify-content: space-between;
-            width: 3500px;
-            top: 1170px;
-            float: right;
-            text-align: right;
-        }
+		.DetalleVenta {
+			text-align: left;
+			width: 650px;
+			word-wrap: break-word; /* Rompe palabras largas y ajusta a la siguiente línea */
+			white-space: normal; /* Permite que el texto salte a la siguiente línea */
+			overflow: hidden; /* Si lo necesitas para evitar que el contenido se desborde */
+			border: 1px solid black;
+		}
 		
-		.Num_Remito {
-			position: relative;
-			top: 100px;
+		.DetallePrecio {
+			text-align: center;
+			width: 120px;
+			border: 1px solid black;
 		}
-		.Fecha_Venta {
-			position: relative;
-			top: 180px;
-		}
-		.Cliente {
-			position: relative;
-			top: 305px;
-		}
-		.Domicilio {
-			position: relative;
-			top: 352px;
-		}
-		.Camposvarios {
-			position: relative;
-			top: 395px;
-		}
-		.Facatc {
-			position: relative;
-			top: 430px;
-		}
+
+
 		.Obse {
 			position: relative;
-			top: 1250px;
+			top: 1190px;
 		}
 		.Ultreglon {
 			position: relative;
-			top: 1350px;
+			top: 1285px;
 		}
 		
 		
+		.Domicilio2 {
+			display: inline-block; /* Para que el span respete el ancho */
+			text-align: left;      /* Alineado a la izquierda */
+			/*background: grey;*/
+		}
+		
+		.Cuit {
+            display: inline-block;
+            text-align: left;
+			/*background: yellow;*/
+        }
+		
+		.Fak {
+            display: inline-block;
+            text-align: left;
+			/*background: cyan;*/
+        }
+		
+		.Aclaraccione {
+            display: inline-block;
+            text-align: left;
+			/*background: cyan;*/
+        }
+		
+		span {
+			white-space: pre; /* Mantener los espacios en los textos */
+		}
+		.Totalin {
+            /*background: brown;*/
+            position: absolute;
+            justify-content: space-between;
+            width: 980px;
+            top: 1145px;
+            float: right;
+            text-align: right;
+        }
+		
 		
 
+
    </style>
-      <link rel="stylesheet" href="css/editel.css"> <!-- Asegúrate de enlazar correctamente el CSS -->
+      <link rel="stylesheet" href="css/editel.css">
 </head>
 
 <body>
@@ -120,43 +118,78 @@
             <div class="c x0 y1 w2 h2">
                <!-- Reemplazar con los datos recibidos del formulario -->
                <div class="Num_Remito t m0 x6 h7 y7 ff4 fs4 fc0 sc0 ls0 ws0">   </div>
-               <div class="Fecha_Venta t m0 x7 h8 y8 ff2 fs5 fc0 sc0 ls0 ws0">         <span id="fecha"></span></div>
-               <div class="Cliente t m0 x12 hd y16 ff2 fsa fc0 sc0 ls0 ws0">             <span id="senores"></span></div>
-               
-               <div class="Domicilio t m0 x12 hd y17 ff2 fsa fc0 sc0 ls0 ws0">              <span id="domicilio"></span>             <span id="localidad" class="Domicilio2">&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;</div>
-                <div class="Camposvarios t m0 x12 hd y18 ff2 fsa fc0 sc0 ls0 ws0">
-                    <span class="campo-left">      <span id="tel"></span></span>
-                    <span class="campo-center">     <span id="iva"></span></span>
-                    <span class="campo-right">      <span id="cuit" class="Domicilio2"></span></span>
-                </div>
-               <div class="Facatc t m0 x12 hd y19 ff2 fsa fc0 sc0 ls0 ws0">                          <span id="atencionSenor"></span>              <span id="facturaN" class="Domicilio2"></span></div>
+               <div class="Fecha_Venta">         <span id="fecha"></span></div>
+			   
+  
+			   
+				<!-- Tabla para los datos de Cliente, Domicilio, etc. con borde sólido de 1px -->
+				<table class="Contenido">
+					<tr>
+						<!-- <td class="Cliente" style="border: 1px solid black;text-align: left;" colspan=3> -->
+							<td class="Cliente" style="text-align: left;" colspan=3>
+							<span id="senores"></span>
+						</td>
+					</tr>
+					<tr>
+						<td class="Domicilio " style="text-align: left;" colspan=2>
+							<span id="domicilio"></span>
+						</td>
+						<td class="Domicilio2">
+							<span id="localidad"></span>
+						</td>
+					</tr>
+					<tr class="Camposvarios ">
+						<td style="width: 50px; text-align: left;">
+							<span id="tel"></span>
+						</td>
+						<td style="width: 33%; text-align: left;">
+							<span id="iva"></span>
+						</td>
+						<td style="width: 200px; text-align: left;">
+							<span id="cuit" class="Cuit"></span>
+						</td>
+					</tr>
+					<tr class="Facatc ">
+						<td style="text-align: left; width: 100px;" colspan=2>
+							<span id="atencionSenor"></span>
+						</td>
+						<td style="text-align: left;">
+							<span id="facturaN" class="Fak"></span>
+						</td>
+					</tr>
+				</table>
+				<!-- Tabla para los datos de Cliente, Domicilio, etc. con borde sólido de 1px -->
+				
 
-                <!-- Tabla para ítems -->
-                <table>
+                <!-- Tabla ítems -->
+                <table class="Productos">
                     <tr>
                         <th>Cantidad</th>
                         <th>Detalle</th>
                         <th>Precio Unit.</th>
                     </tr>
                     <tbody id="items">
-                        <!-- Los ítems se llenarán aquí -->
+                        <!-- aca relleno los items vendidos -->
                     </tbody>
                 </table>
+				<!-- Tabla ítems -->
+				
                
-               <div class="Totalin t m0 x12 hd ff2 fsa fc0 sc0 ls0 ws0">       <span id="total"></span></div>
+               <div class="Totalin">       <span id="total"></span></div>
 
                <!-- Observaciones -->
-               <div class="Obse t m0 x12 hf y1e ff2 fsb fc0 sc0 ls0 ws0">                      <span id="observaciones"></span></div>
+               <div class="Obse t m0 x12 hf y1e ff2 fsb fc0 sc0 ls0 ws0">                                <span id="observaciones"></span></div>
 
                <!-- Recibi Conforme y Aclaracion -->
-               <div class="Ultreglon t m0 x17 hd y20 ff2 fsa fc0 sc0 ls0 ws0">                        <span id="recibiConforme"></span>             <span id="aclaracion" class="Domicilio2"></span></div>
+               <div class="Ultreglon t m0 x17 hd y20 ff2 fsa fc0 sc0 ls0 ws0">                                  <span id="recibiConforme"></span>                                                                  <span id="aclaracion" class="Aclaraccione"></span></div>
             </div>
          </div>
       </div>
    </div>
 
-    <script>
+<script>
         function cargarDatos() {
+            // Cargar los datos generales desde el localStorage
             document.getElementById('fecha').textContent = localStorage.getItem('fecha');
             document.getElementById('senores').textContent = localStorage.getItem('senores');
             document.getElementById('domicilio').textContent = localStorage.getItem('domicilio');
@@ -167,31 +200,25 @@
             document.getElementById('atencionSenor').textContent = localStorage.getItem('atencionSenor');
             document.getElementById('facturaN').textContent = localStorage.getItem('facturaN');
 
-            const items = JSON.parse(localStorage.getItem('items')) || [];
-            const itemsTable = document.getElementById('items');
-            let total = 0; // Variable para acumular el total
+            // Cargar los ítems desde el localStorage
+            const items = JSON.parse(localStorage.getItem('items'));
+            const itemsContainer = document.getElementById('items');
 
-            itemsTable.innerHTML = ''; // Limpiar tabla antes de cargar datos
             items.forEach(item => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${item.cantidad}</td>
-                    <td>${item.detalle}</td>
-                    <td>${item.precio}</td>
+                    <td class="DetalleVenta">${item.detalle}</td>
+                    <td class="DetallePrecio">${item.precio}</td>  <!-- Mostrar el precio como string sin sumar -->
                 `;
-                itemsTable.appendChild(row);
-                total += parseFloat(item.precio) || 0; // Acumular el total, manejando posibles valores NaN
+                itemsContainer.appendChild(row);
             });
-
-            document.getElementById('total').textContent = total.toFixed(2); // Mostrar el total con dos decimales
-
-            document.getElementById('observaciones').textContent = localStorage.getItem('observaciones');
-            document.getElementById('recibiConforme').textContent = localStorage.getItem('recibiConforme');
-            document.getElementById('aclaracion').textContent = localStorage.getItem('aclaracion');
         }
 
-        cargarDatos();
+        // Llamar a la función cuando la página esté completamente cargada
+        window.onload = cargarDatos;
     </script>
+
 
 </body>
 </html>
